@@ -1,3 +1,8 @@
+//Kenneth V. Pascua
+//COSC 1437-58001 - Nov 19 2022
+//Dr. T
+//
+
 #include <iostream>
 #include <string> 
 #include <unistd.h>
