@@ -2,94 +2,17 @@
 #include <string> 
 #include <unistd.h>
 #include "Input_Validation_Extended.h"
+#include "classes.h"
+
 using namespace std; 
 
-class Team 
-{
-  private:
-    int score; 
-    bool homeStatus; 
-    string teamName; 
-    int timeoutCount; 
-    string coachName;
-    string homeCity;
-  public:
-      Team() //default constructor 
-      {
-        score = 0; 
-        homeStatus = false; //visitor = false, home = true
-        teamName = "DefaultTeamName"; 
-        timeoutCount = 0; 
-        coachName = "DefaultCoachName"; 
-        homeCity = "DefaultHomeCity";
-      }
-      void setScore(int s) { score = s; }
-      void setHomeStatus(bool hs) { homeStatus = hs; }
-      void setName(string n) { teamName = n; }
-      void setTimeoutCount(int sTC) { timeoutCount = sTC; }
-      void setCoachName(string sCN) { coachName = sCN; }
-      void setHomeCity (string sHC) { }
-      int getScore() const { return score; }
-      bool getHomeStatus() const { return homeStatus; }
-      string getTeanName() const { return teamName; }
-      int getTimeoutCount() const { return shotsOnGoal; }
-      string getCoachName() const { return coachName; }
-};
-
-class Scoreboard
-{
-  private:
-    int half; 
-    Team home; //object that is a member of another object
-    Team visitor; 
-  public: 
-    Scoreboard()
-    {
-      half = 0; 
-    }  
-    void setHalf(int h) { half = h; }
-    void setHome(Team hSet) { home = hSet; }
-    void setVisitor(Team vSet) { visitor = vSet; }
-    int getHalf() const { return half; }
-    Team getHome() const { return home; }
-    Team getVisitor() const { return visitor; }
-    void showScoreboard()
-    {
-      string color = ""; 
-      string reset = "\x1b[0m";
-      color = "\x1b[32;4m"; //green 
-      string score = "\x1b[36;1m"; //score color 
-      cout << color << "Soccer Scoreboard Dr_T Style" << reset << endl; 
-      cout << home.getName() << "\t\t" << visitor.getName() << endl; 
-      cout << "\t" << score << home.getScore() << reset << "\t\t\t\t\t\t" << visitor.getScore() << endl; 
-      cout << score << home.getCoachName() << reset << "\t\t" << visitor.getCoachName() << endl; 
-      for(int i = 0; i < 47; i++) { cout << "*"; } cout << endl;
-       
-       //proces to show the home team status
-       cout << "Home> \t"; 
-       if(home.getHomeStatus() == true)
-       {
-         cout << "Team 1: " << home.getName() << "*"; 
-       }
-       else if(visitor.getHomeStatus() == true)
-       {
-         cout << "Team 2: " << visitor.getName() << "*"; 
-       }
-       else
-       {
-         cout << "Error: "; 
-       }
-       
-       cout  << endl; 
-    }
-};
 
 int main() 
 {
   Scoreboard s;
   Team tOne;
   Team tTwo; 
-  string newName = ""; 
+  string newTeamName = ""; 
   string userChoice = ""; 
   string newCoachName = ""; 
   int homeTeamQuestion = 0; 
@@ -112,7 +35,7 @@ int main()
       cout << "A = Update Home Team Name" << endl; 
       cout << "B = Update Home Team Score" << endl; 
       cout << "C = Update Home Status" << endl; 
-      cout << "D = Update Visting Team Coach" << endl; 
+      cout << "D = Update Visiting Team Coach" << endl; 
       cout << "E = Exit" << endl;
       cout << ">"; 
       cin >> userChoice; 
@@ -122,9 +45,9 @@ int main()
         //Dr_T challenge Accept a new name for s's home team
         cout << "****Update Home Team Score module*** " << endl; 
         cout << "\nPlease enter a new name for the home team: ";
-        cin >> newName; 
+        cin >> newTeamName; 
         //change that home team's default name
-        tOne.setName(newName); //set tOne's data to the new desired name
+        tOne.setTeamName(newTeamName); //set tOne's data to the new desired name
       }
       else if(userChoice == "B" || userChoice == "b")
       {
@@ -136,7 +59,7 @@ int main()
       else if(userChoice == "C" || userChoice == "c")
       {
         cout << "\nUpdate Home Status Module****" << endl; 
-        cout << "\nWho is the home team: 1 = T1, 2=T2: "; 
+        cout << "\nWho is the home team: 1 = T1, 2 = T2: "; 
         homeTeamQuestion = validateInt(homeTeamQuestion); 
        
         if(homeTeamQuestion == 1)
@@ -166,14 +89,14 @@ int main()
       {
         cout << "Exit chosen." << endl; 
       }
-      else //invalid input: default clause
+      else 
       {
         cout << "\nInvalid input." << endl; 
-        sleep(2); //wait two seconds, go to the next process 
+        sleep(2); 
       }
 
-      s.setHome(tOne); //refresh the data in s to the new updates...
-      s.setVisitor(tTwo); //refresh the data
+      s.setHome(tOne); 
+      s.setVisitor(tTwo); 
   
   }while(userChoice != "E" && userChoice != "e");
 
