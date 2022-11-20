@@ -9,27 +9,30 @@ class Team
   private:
     int score; 
     bool homeStatus; 
-    string name; 
-    int shotsOnGoal; 
-    string coachName; 
+    string teamName; 
+    int timeoutCount; 
+    string coachName;
+    string homeCity;
   public:
       Team() //default constructor 
       {
         score = 0; 
         homeStatus = false; //visitor = false, home = true
-        name = "DefaultTeamName"; 
-        shotsOnGoal = 0; 
+        teamName = "DefaultTeamName"; 
+        timeoutCount = 0; 
         coachName = "DefaultCoachName"; 
+        homeCity = "DefaultHomeCity";
       }
       void setScore(int s) { score = s; }
       void setHomeStatus(bool hs) { homeStatus = hs; }
-      void setName(string n) { name = n; }
-      void setShotsOnGoal(int sog) { shotsOnGoal = sog; }
+      void setName(string n) { teamName = n; }
+      void setTimeoutCount(int sTC) { timeoutCount = sTC; }
       void setCoachName(string sCN) { coachName = sCN; }
+      void setHomeCity (string sHC) { }
       int getScore() const { return score; }
       bool getHomeStatus() const { return homeStatus; }
-      string getName() const { return name; }
-      int getShotsOnGoal() const { return shotsOnGoal; }
+      string getTeanName() const { return teamName; }
+      int getTimeoutCount() const { return shotsOnGoal; }
       string getCoachName() const { return coachName; }
 };
 
