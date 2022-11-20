@@ -60,12 +60,12 @@ class Scoreboard
       string reset = "\x1b[0m";
       color = "\x1b[32;4m";  
       string score = "\x1b[36;1m";  
-      string score2 = "\x1b[37;1m";
+      string score2 = "\x1b[33;1m";
       cout << color << "Football Scoreboard" << reset << endl; 
       cout << home.getTeamName() << "\t\t" << visitor.getTeamName() << endl; 
       cout << "\t" << score << home.getScore() << "\t" << home.getTimeoutCount() << reset << "\t\t\t\t\t\t" << score2 << visitor.getScore() << "\t" << visitor.getTimeoutCount() << endl; 
       cout << score << home.getCoachName() << reset << "\t\t" << score2 << visitor.getCoachName() << endl; 
-      cout << score << home.getHomeCity() << reset << "\t\t" << score2 << visitor.getHomeCity() << endl;
+      cout << score << home.getHomeCity() << reset << "\t\t" << score2 << visitor.getHomeCity() << reset << endl;
       for(int i = 0; i < 47; i++) { cout << "*"; } cout << endl;
       
        cout << "Home> \t"; 
